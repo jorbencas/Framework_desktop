@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Framework 2.1/src/Exercici_9/Modules/Users/Dummies/function_dummies.java&apos; to &apos;Make_dummies.java&apos;" description="Rename resource &apos;function_dummies.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/Exercici_9/Modules/Users/Dummies/function_dummies.java" name="Make_dummies.java" stamp="1486641850843" updateReferences="true"/>
+</session>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://gitlab.com/jorbencas/programaccion.git"/>
+	</list>
+	<list key="EGit.KnownHosts">
+		<item value="bitbucket.org"/>
+		<item value="github.com"/>
+		<item value="git.eclipse.org"/>
+		<item value="gitlab.com"/>
+	</list>
+	<section name="GitCommitMessageComponent">
+	</section>
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item value="500,500" key="STAGING_SASH_FORM_WEIGHT"/>
+		<item value="false" key="sortItemState"/>
+		<item value="500,500" key="HORIZONTAL_SASH_FORM_WEIGHT"/>
+	</section>
+</section>

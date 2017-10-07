@@ -1,0 +1,35 @@
+package Exercici_9.Utils;
+
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
+import Exercici_9.Classes.Setting;
+
+public class functions_theme {
+
+public static void theme (){
+		
+		//Obtener lista look&feel disponibles en el SO
+		//http://www.codigofantasma.com/blog/java-look-feel-parte-1/
+		try {
+			switch (Setting.getInstance().getTheme()){
+			case "METAL":// Metal - Predeterminado JAVA
+				System.out.println("Prueba");
+				UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+				break;
+
+			case "GTK":// GTK
+				System.out.println("Prueba");
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				break;
+
+			case "MOTIF":// Motif
+				System.out.println("Prueba");
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+				break;
+			}
+		}catch (Exception e){
+			JOptionPane.showMessageDialog(null, "errortheme", "errortitle", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}

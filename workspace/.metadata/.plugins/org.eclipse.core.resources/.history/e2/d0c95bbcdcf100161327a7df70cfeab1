@@ -1,0 +1,108 @@
+package Exercici_9.Modules.Users.Utils.CRUD;
+
+import Exercici_9.Menu;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Modules.Users.Classes.Admin;
+import Exercici_9.Modules.Users.Classes.Client;
+import Exercici_9.Modules.Users.Classes.Singleton;
+import Exercici_9.Modules.Users.Classes.User;
+import Exercici_9.Modules.Users.Utils.Functions_Users;
+import Exercici_9.Utils.menus;
+import javax.swing.JOptionPane;
+
+public class functions_read {
+
+	public static void read_admin (Admin a1){
+		int menu = 0, location = -1;
+		
+		if(Singleton.useradmin.isEmpty()){
+			JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("error1"), "Error", JOptionPane.ERROR_MESSAGE);
+		}else{
+			String [] tipo = {languages.getInstance().getProperty("reada"), languages.getInstance().getProperty("read1")};
+			menu = menus.menu(tipo, languages.getInstance().getProperty("read-m"), languages.getInstance().getProperty("read-t"));
+			switch (menu){
+				case 0:
+					for (int i = 0; i <Singleton.useradmin.size();i++){
+						String cad = "";
+						cad = cad + (Singleton.useradmin.get(i).to_String());
+						JOptionPane.showMessageDialog(null, cad);
+					}
+					break;
+				case 1:
+					location = -1;
+					 //a1 = (Admin)Functions_Users.crear_users_dni(1);
+					 a1 = functions_find.IDadmin();
+					location = functions_find.find_admin(a1);
+					if (location != -1) {
+						a1 = Singleton.useradmin.get(location);
+						JOptionPane.showMessageDialog(null, a1.to_String());
+					}else {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("erroruser"), "errortitle", JOptionPane.ERROR_MESSAGE);
+					}
+					break;
+			}
+		}
+	}
+	
+	public static void read_usernormal (User a1){
+		int menu = 0, location = -1;
+		
+		if(Singleton.userregister.isEmpty()){
+			JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("error1"), "Error", JOptionPane.ERROR_MESSAGE);
+		}else{
+			String [] tipo = {languages.getInstance().getProperty("reada"), languages.getInstance().getProperty("read1")};
+			menu = menus.menu(tipo, languages.getInstance().getProperty("read-m"), languages.getInstance().getProperty("read-t"));
+			switch (menu){
+				case 0:
+					for (int i = 0; i <Singleton.userregister.size();i++){
+						String cad = "";
+						cad = cad + (Singleton.userregister.get(i).to_String());
+						JOptionPane.showMessageDialog(null, cad);
+					}
+					break;
+				case 1:
+					location = -1;
+					 a1 = (User)Functions_Users.crear_users_dni(0);
+					location = functions_find.find_user(a1);
+					if (location != -1) {
+						a1 = Singleton.userregister.get(location);
+						JOptionPane.showMessageDialog(null, a1.to_String());
+					}else {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("erroruser"), "errortitle", JOptionPane.ERROR_MESSAGE);
+					}
+					break;
+			}
+		}
+	}
+	
+	public static void read_client (Client c1){
+		int menu = 0, location = -1;
+		
+		if(Singleton.userclient.isEmpty()){
+			JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("error1"), "Error", JOptionPane.ERROR_MESSAGE);
+		}else{
+			String [] tipo = {languages.getInstance().getProperty("reada"), languages.getInstance().getProperty("read1")};
+			menu = menus.menu(tipo, languages.getInstance().getProperty("read-m"), languages.getInstance().getProperty("read-t"));
+			switch (menu){
+				case 0:
+					for (int i = 0; i <Singleton.userclient.size();i++){
+						String cad = "";
+						cad = cad + (Singleton.userclient.get(i).to_String());
+						JOptionPane.showMessageDialog(null, cad);
+					}
+					break;
+				case 1:
+					location = -1;
+					 c1 = (Client)Functions_Users.crear_users_dni(2);
+					location = functions_find.find_client(c1);
+					if (location != -1) {
+						c1 = Singleton.userclient.get(location);
+						JOptionPane.showMessageDialog(null, c1.to_String());
+					}else {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("erroruser"), "errortitle", JOptionPane.ERROR_MESSAGE);
+					}
+					break;
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+package Exercici_9.Modules.Users.Dummies.CRUD_dummies;
+
+import java.util.Collections;
+
+import javax.swing.JOptionPane;
+
+import Exercici_9.Menu;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Modules.Users.Classes.Singleton;
+import Exercici_9.Modules.Users.Classes.order.order_by_age;
+import Exercici_9.Modules.Users.Classes.order.order_by_date;
+import Exercici_9.Modules.Users.Classes.order.order_by_name;
+import Exercici_9.Utils.menus;
+
+public class functions_order {
+
+	public static void change_orderadmin () {
+		String [] options = { languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("name2"), languages.getInstance(),getProperty("age2")};
+		String menu = "";
+		
+		if(Singleton.useradmin.isEmpty()){
+			JOptionPane.showMessageDialog(null,  languages.getInstance().getProperty("error1"), "Error", JOptionPane.ERROR_MESSAGE);
+		}else{
+			menu = menus.menucombo(options, "Order", "Order" );
+			switch (menu) {
+				case "dni":
+					Collections.sort(Singleton.useradmin);
+					break;
+				case "Nombre":
+				case "Name":
+				case "Nom":
+					Collections.sort(Singleton.useradmin, new order_by_name());
+					break;
+				case "Fecha de nacimiento":
+				case "Date birthday":
+				case "Data de naixement":
+					Collections.sort(Singleton.useradmin, new order_by_date());
+					break;
+				case "Age":
+				case "Edad":
+					Collections.sort(Singleton.useradmin, new order_by_age());
+				break;
+			}
+		}
+	}
+}

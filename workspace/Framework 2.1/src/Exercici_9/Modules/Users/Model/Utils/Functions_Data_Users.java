@@ -1,0 +1,195 @@
+package Exercici_9.Modules.Users.Model.Utils;
+
+import javax.swing.JOptionPane;
+import Exercici_9.Utils.validate;
+import Exercici_9.Utils.functions;
+import Exercici_9.Classes.Fecha;
+import Exercici_9.Classes.Setting;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Modules.Users.Model.Classes.Admin;
+import Exercici_9.Modules.Users.Model.Classes.Client;
+
+
+//En aquest fitxer, es desde ahon es criden, les 4 funcions, que son necessaries, per a que el faremewok funcione correctament.
+public class Functions_Data_Users {
+	public static Fecha pide_fecha_nacimiento() {
+		String fecha_n = "";
+		boolean result = false;
+		Fecha n = null;
+		int edad = 0;
+
+		do {
+			fecha_n = functions.v_String(languages.getInstance().getProperty("date_birthday") + "\n" + languages.getInstance().getProperty("dateformat")+ Setting.getInstance().getDate_config(), languages.getInstance().getProperty("date_birthday2"));
+			result = validate.date(fecha_n);// validem el format de la data.
+			if (result == false) {
+				result = false;
+				JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errorformat"), languages.getInstance().getProperty("format"),JOptionPane.WARNING_MESSAGE);
+			} else {
+				result = true;
+				n = new Fecha(fecha_n);//creem el objecte
+				result = n.validaFecha();// validem la data, utilitzant el validador de la classe Fecha.
+				if (result == false) {
+					result = false;
+					JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errordate"),  "Error",JOptionPane.ERROR_MESSAGE);
+				} else {
+					result = true;
+					edad = n.restarFechaSistema();
+					// end del fecha sistema
+					if (edad < 18 || edad > 99) {//Condicio, per a una edad valida
+						result = false;
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("erroage"),  "Error",JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("remage"), languages.getInstance().getProperty("age2"), JOptionPane.INFORMATION_MESSAGE);
+					} else {
+						result = true;
+					} // end third else
+				} // end second else
+			} // end else
+		} while ((result == false));
+
+		return n;
+
+	}
+
+	public static Fecha pide_fecha_contratacion(Fecha n) {
+		String fecha_c = "";
+		boolean result = false;
+		int compara = 0, antiguedad = 0, edad = 0;
+		Fecha c = null;
+		
+		//bucle per a demanar una fecha de contractacio, valida.
+		do {
+			fecha_c = functions.v_String(languages.getInstance().getProperty("date_hiri") + "\n" + languages.getInstance().getProperty("dateformat") + Setting.getInstance().getDate_config(), languages.getInstance().getProperty("date_hiri1"));
+			result = validate.date(fecha_c);// validem el format de la data.
+			if (result == false) {
+				result = false;
+				JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errorformat"), languages.getInstance().getProperty("format"),JOptionPane.WARNING_MESSAGE);
+			} else {
+				result = true;
+				c = new Fecha(fecha_c);//creem el objecte
+				result = c.validaFecha();// validem la data, utilitzant el validador de la classe Fecha.
+				if (result == false) {
+					result = false;
+					JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errordate"),  languages.getInstance().getProperty("error"),JOptionPane.ERROR_MESSAGE);
+				} else {
+					result = true;
+					/*
+					 * compares, la data de naixement, i la data de
+					 * contractacio, el valor correcte es 1, ja que aixo
+					 * significa, que la data de naixement es anterior a la de
+					 * contractacio
+					 */
+					compara = n.comparaFechas(c);// 1 2 3
+					if (compara == 1) {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("before"), languages.getInstance().getProperty("age2"),JOptionPane.INFORMATION_MESSAGE);
+						edad = n.restar2Fechas(c);
+									/* Comprovem que la diferencia entre la fecha de
+									 * naixement i la de contractacio, sija un minim
+									 * de 18 anys, ja que a la nostra aplicacio, per
+									 * poder comprar, es necessari tindre 18 anys
+									 */
+						System.out.println("The value: " + edad);
+						if (edad < 18) {
+							result = false;
+							JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("erroage"), "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("remage"), languages.getInstance().getProperty("age2"), JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							result = true;
+							antiguedad = c.restarFechaSistema();
+							if (antiguedad <= 0) {
+								result = false;
+								JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errorantiguety"), "Error", JOptionPane.ERROR_MESSAGE);
+								System.out.println("The career " + result);
+							} else
+								result = true;
+						} // end else compara
+					} else if (compara == 2) {
+						JOptionPane.showMessageDialog(null,  languages.getInstance().getProperty("afther"), languages.getInstance().getProperty("age2"),JOptionPane.ERROR_MESSAGE);
+					} else if (compara == 3) {
+						JOptionPane.showMessageDialog(null,  languages.getInstance().getProperty("same"), languages.getInstance().getProperty("age2"),JOptionPane.ERROR_MESSAGE);
+					} // end else if 2
+				} // end second else
+			} // end fist else
+		} while ((result == false) || (edad < 18 ) || (compara != 1));
+
+		return c;
+	}
+
+	public static Fecha pide_fecha_alta(Fecha n) {
+		String fecha_a = "";
+		boolean result = false;
+		int compara = 0, antiguedad = 0, edad = 0;
+		Fecha a = null;
+
+		do {
+			fecha_a = functions.v_String(languages.getInstance().getProperty("date_regist")+ "\n" + languages.getInstance().getProperty("dateformat") + Setting.getInstance().getDate_config(), languages.getInstance().getProperty("date_regist1"));
+			result = validate.date(fecha_a);// validem el format de la data.
+			if (result == false) {
+				result = false;
+				JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errorformat"), languages.getInstance().getProperty("format"),JOptionPane.WARNING_MESSAGE);
+			} else {
+				result = true;
+				a = new Fecha(fecha_a);//creem el objecte
+				result = a.validaFecha();// validem la data, utilitzant el validador de la classe Fecha.
+				if (result == false) {
+					result = false;
+					JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errordate"), "Error",JOptionPane.ERROR_MESSAGE);
+				} else {
+					result = true;
+					// compares, la data de naixement, i la data de contractacio, el valor correcte es 1, ja que aixo significa, que la data de naixement es anterior a la de contractacio
+					compara = n.comparaFechas(a);// 1 2 3
+					if (compara == 1) {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("uregis-b"), languages.getInstance().getProperty("age2"),JOptionPane.INFORMATION_MESSAGE);
+						edad = n.restar2Fechas(a);
+									/* Comprovem que la diferencia entre la
+									 * fecha de alta i la de contractacio, sija
+									 * un minim de 18 anys
+									 */
+						if (edad < 18) {
+							result = false;
+							JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("erroage"), "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("remage"), languages.getInstance().getProperty("age2"),JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							result = true;
+							antiguedad = a.restarFechaSistema();
+							if (antiguedad <= 0) {
+								result = false;
+								JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("errorantiguety"), "Error",JOptionPane.ERROR_MESSAGE);
+							} else
+								result = true;
+						} // end compara else
+					} else if (compara == 2) {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("uregis-a"), languages.getInstance().getProperty("age2"),JOptionPane.INFORMATION_MESSAGE);
+					} else if (compara == 3) {
+						JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("uregis-s"), languages.getInstance().getProperty("age2"),JOptionPane.INFORMATION_MESSAGE);
+					} // end else if 2
+				} // end second else
+			} // end fist else
+		} while ((result == false) || (edad < 18) || (compara != 1));
+
+		return a;
+	}
+
+	public static Fecha cambia_fecha_nac(Admin a, Client c) {
+		boolean validatedata = false;
+		int edad = 0, antiguedad = 0;
+		Fecha n = null;
+		
+		//Buclejem fins que la diferéncia entre la edad i l'antiguitat, sigua igual o mejor a 18
+			do{
+				n = Functions_Data_Users.pide_fecha_nacimiento();//Demanem la fecha de naixement
+				edad = n.restarFechaSistema();//traem la fecha del sistema
+				System.out.println( "The age: "+ edad);
+				if(c == null){
+					antiguedad = ((Admin) a).getAntiguedad();//Agafem la antiguetat del administrador, que anteriorment li habiem possat
+					System.out.println( "The career of Admin" + antiguedad);
+				}else if (a == null){
+					antiguedad = ((Client) c).getAntiguedad();//Agafem la antiguetat del client, que anteriorment li habiem possat
+					System.out.println( "The career of client:"+ antiguedad);
+				}//end else if
+				validatedata = n.compara_datos(edad, antiguedad);//Comparem la edad i l'antiguitat
+				System.out.println( "The result: "+ validatedata);
+			}while( validatedata == false);
+		return n;
+	}
+	
+}

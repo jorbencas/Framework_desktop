@@ -1,0 +1,75 @@
+package Exercici_9.Modules.Users.Model.BLL.BLL_users.files_users.Admin.Default;
+
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+
+import javax.swing.JOptionPane;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.stream.JsonReader;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+
+import Exercici_9.Modules.Users.Classes.Admin;
+import Exercici_9.Modules.Users.Classes.Singleton;
+
+public class A_JSON {
+	public static void genera_json_auto() {
+
+		String PATH = null;
+		Admin a1 = null;
+		
+			try {
+				XStream xstream = new XStream(new JettisonMappedXmlDriver());
+				xstream.setMode(XStream.NO_REFERENCES);
+				xstream.alias("Admin", Admin.class);
+
+				PATH = new java.io.File(".").getCanonicalPath()
+						+ "/src/Exercici_9/Modules/Users/Utils/file_users/Admin/files/Admin.json";
+
+				// xstreamjson.toXML(AlistEF.efi, new FileOutputStream(PATH));
+				// //NO VA
+
+				Gson gson = new Gson();
+				String json = gson.toJson(Singleton.useradmin);
+				FileWriter fileXml = new FileWriter(PATH);
+				fileXml.write(json.toString());
+				fileXml.close();
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "Error al grabar el JSON", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+	}
+
+	public static void obri_json_auto() {
+		String PATH = null;
+		Admin e1 = null;
+
+		try {
+			XStream xstream = new XStream(new JettisonMappedXmlDriver());
+			xstream.setMode(XStream.NO_REFERENCES);
+			xstream.alias("Admin", Admin.class);
+
+			PATH = new java.io.File(".").getCanonicalPath()
+					+ "/src/Exercici_9/Modules/Users/Utils/file_users/Admin/files/Admin.json";
+
+			Singleton.useradmin.clear();
+
+			JsonReader lector = new JsonReader(new FileReader(PATH));
+			JsonParser parseador = new JsonParser();
+			JsonElement raiz = parseador.parse(lector);
+
+			Gson json = new Gson();
+			JsonArray lista = raiz.getAsJsonArray();
+			for (JsonElement elemento : lista) {
+				e1 = json.fromJson(elemento, Admin.class);
+				Singleton.useradmin.add(e1);
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Error al leer el JSON", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+}

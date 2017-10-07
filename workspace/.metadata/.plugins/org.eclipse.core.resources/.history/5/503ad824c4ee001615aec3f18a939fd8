@@ -1,0 +1,21 @@
+package Exercici_9.Modules.Users.Dummies.CRUD_dummies;
+
+
+import Exercici_9.Modules.Users.Classes.Admin;
+import Exercici_9.Modules.Users.Classes.Client;
+import Exercici_9.Modules.Users.Classes.User;
+import Exercici_9.Modules.Users.Dummies.Make_dummies;
+
+
+public class functions_create_dummies {
+
+	public static void create_dummies_admin (Admin a1){
+				Make_dummies.makedummies_admin();
+		}
+	public static void create_dummies_normal (User a1){
+				Make_dummies.makedummies_userregister();
+		}
+	public static void create_dummies_client (Client a1){
+				Make_dummies.makedummies_client();
+		}
+}

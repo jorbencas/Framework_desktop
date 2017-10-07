@@ -1,0 +1,131 @@
+package Exercici_9.Modules.Users.Model.Classes;
+
+import java.io.Serializable;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import Exercici_9.Classes.Fecha;
+
+@XStreamAlias("Class_user")
+public abstract class Class_user implements Comparable<Class_user>, Serializable {
+	// Attributes
+	@XStreamAlias("nombre")
+	private String nombre;
+	@XStreamAlias("direccion")
+	private String direccion;
+	@XStreamAlias("codigo_postal")
+	private int cod_postal;
+	@XStreamAlias("telefono")
+	private String telefono;
+	@XStreamAlias("fecha_de_nacimento")
+	private Fecha fecha_nacimiento;
+	@XStreamAlias("edad")
+	private int edad;
+	@XStreamAlias("sexo")
+	private char sexe;
+	@XStreamAlias("dni")
+	private String DNI;
+	
+	// Methods
+
+	// constructor
+	public Class_user(String nombre, String direccion, int cod_postal, String telefono,Fecha fecha_nacimiento2, char sexe, String DNI) {
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.cod_postal = cod_postal;
+		this.telefono = telefono;
+		this.fecha_nacimiento = fecha_nacimiento2;
+		this.sexe = sexe;
+		this.DNI = DNI;
+		this.setedad(CalculaEdad());
+	}
+	
+	public Class_user(String DNI) {
+		this.DNI = DNI;
+	}
+	
+
+	//getters
+	public String getnombre() {
+		return nombre;
+	}
+	
+	public String getdireccion() {
+		return direccion;
+	}
+	
+	public int getcod_postal(){
+		return cod_postal;
+	}
+
+	public String gettelefono() {
+		return telefono;
+	}
+	
+	public Fecha getfecha_nacimiento(){
+		return fecha_nacimiento;
+	} 
+	
+	public int CalculaEdad(){
+		return edad = fecha_nacimiento.RestaFechas();
+	}
+
+	public int getedad() {
+		return edad = CalculaEdad();
+	}
+
+	public char getsexe() {
+		return sexe;
+	}
+
+	public String getDNI() {
+		return DNI;
+	}
+
+	public int compareTo(Class_user param) {//per ha ordenar els usuaris per dni
+		if(this.getDNI().compareTo(param.getDNI())>0)
+			return 1;
+		if(this.getDNI().compareTo(param.getDNI())<0)
+			return -1;
+		return 0;
+	  }
+	
+	public boolean equals(Object param){
+		return getDNI().equals(((Class_user)param).getDNI());//per ha buscar el dni
+	}		
+
+	//setters
+	public void setnombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setdireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	
+	public void setcod_postal(int cod_postal){
+		this.cod_postal = cod_postal;
+	}
+	
+	public void settelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	
+	public void setfecha_nacimiento(Fecha fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
+		this.setedad(CalculaEdad());
+	}
+	
+	public void setedad(int edad) {
+		this.edad = this.CalculaEdad();
+	}
+
+	public void setsexe(char sexe) {
+		this.sexe = sexe;
+	}
+
+	public void setDNI(String DNI) {
+		this.DNI = DNI;
+	}
+
+	// to_String
+	public abstract String to_String();
+}

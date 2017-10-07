@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="/home/jorge/workspace/Framework 2.1"/>
+		<item value="/home/jorge/Documentos/Cicle Formatiu/git/Programaccio/workspace/Framework 2.1"/>
+		<item value="/home/jorge/Documentos/Cicle Formatiu/git/Programaccio/workspace"/>
+		<item value="/home/jorge/workspace"/>
+		<item value="/home/jorge/Documentos/Cicle Formatiu/DAW/Programació/Framework"/>
+		<item value="/home/jorge/Documentos/Cicle Formatiu/DAW/Programació/Framework/bin"/>
+		<item value="/home/jorge/Descargas/Tema_4"/>
+		<item value="/home/jorge/Descargas/workspace/Objectes"/>
+		<item value="/home/jorge/Descargas/workspace/Objectes/src/Exer_3"/>
+		<item value="/home/jorge/Documentos/Cicle Formatiu/DAW/Programació/TEMA4 OO/5 repository_framework_OO/Frameworkv2.1_AngelConesaCamarena/Framework"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/home/jorge/workspace/Framework 2.1"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="ResourceNavigator">
+		<item value="Aggregate for window 1475335806019" key="ResourceWorkingSetFilter.STORE_WORKING_SET"/>
+		<item value="1" key="ResourceViewer.STORE_SORT_TYPE"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="308" key="DIALOG_X_ORIGIN"/>
+		<item value="174" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item value="613" key="DIALOG_WIDTH"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+		<item value="598" key="DIALOG_HEIGHT"/>
+		<item value="346" key="DIALOG_X_ORIGIN"/>
+		<item value="0" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

@@ -1,0 +1,284 @@
+package Exercici_9.Modules.Users.Model.DAO;
+
+
+import javax.swing.JOptionPane;
+import Exercici_9.Menu;
+import Exercici_9.Classes.Fecha;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Utils.menus;
+
+
+public class Functions_Users {
+	public static Class_user crear_users_generic(int i) {
+		Class_user u = null;
+		if (i == 0) {
+			String nombre =  Datos_user.pidenombre();
+			String direccion = Datos_user.pidedireccion();
+			int cod_postal = Datos_user.pidecod_postal();
+			String telefono = Datos_user.pidetelefono();
+			Fecha fecha_nacimiento = Functions_Data_Users.pide_fecha_nacimiento();
+			char sexe = Datos_user.combosexo();
+			String DNI = Datos_user.pidedni();
+			String Productos_de_interes = Datos_user.pideProdinteres();
+			String Promociones = Datos_user.pidepromoción();
+			int num_comentarios = Datos_user.pidenumcoment();
+			u = new User(nombre, direccion, cod_postal, telefono, fecha_nacimiento, sexe, DNI, Productos_de_interes,Promociones, num_comentarios);
+			JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("u1"),languages.getInstance().getProperty("cong"),JOptionPane.INFORMATION_MESSAGE);
+			
+		} else if (i == 1) {
+			String nombre = Datos_user.pidenombre();
+			String direccion = Datos_user.pidedireccion();
+			int cod_postal = Datos_user.pidecod_postal();
+			String telefono = Datos_user.pidetelefono();
+			Fecha fecha_nacimiento = Functions_Data_Users.pide_fecha_nacimiento();
+			Fecha fecha_contratacion = Functions_Data_Users.pide_fecha_contratacion(fecha_nacimiento);
+			char sexe = Datos_user.combosexo();
+			String DNI = Datos_user.pidedni();
+			String email = Datos_user.pideemail();
+			String passwd = Datos_user.pidepassword();
+			u = new Admin( nombre, direccion, cod_postal, telefono, fecha_nacimiento, DNI, fecha_contratacion, sexe, email, passwd);
+			JOptionPane.showMessageDialog(null,  languages.getInstance().getProperty("u2"),languages.getInstance().getProperty("cong"),JOptionPane.INFORMATION_MESSAGE);
+			
+		} else if (i == 2) {
+			String nombre = Datos_user.pidenombre();
+			String direccion = Datos_user.pidedireccion();
+			int cod_postal = Datos_user.pidecod_postal();
+			String telefono = Datos_user.pidetelefono();
+			Fecha fecha_nacimiento = Functions_Data_Users.pide_fecha_nacimiento();
+			Fecha fecha_de_alta = Functions_Data_Users.pide_fecha_alta(fecha_nacimiento);
+			char sexe = Datos_user.combosexo();
+			String DNI = Datos_user.pidedni();
+			String email = Datos_user.pideemail();
+			String passwd = Datos_user.pidepassword();
+			String Promociones = Datos_user.pidepromoción();
+			int num_compras = Datos_user.pidenumcompres();
+			u = new Client( nombre, direccion, cod_postal, telefono, fecha_nacimiento, sexe, email, passwd, DNI, fecha_de_alta, Promociones, num_compras);
+			JOptionPane.showMessageDialog(null,  languages.getInstance().getProperty("u3"),languages.getInstance().getProperty("cong"),JOptionPane.INFORMATION_MESSAGE);
+			
+		}
+		return u;
+	}
+
+	public static String read_users_generic(Class_user u) {
+		String cad = "";
+		if (u instanceof Client) {
+			cad = ((Client) u).to_String();
+		}
+		if (u instanceof Admin) {
+			cad = ((Admin) u).to_String();
+		}
+		if (u instanceof User) {
+			cad = ((User) u).to_String();
+		}
+		return cad;
+	}
+
+	public static Class_user update_users_generic(Class_user u) {
+		//Cambiem les dades del Normal
+		if (u instanceof User) {
+			String[] tipo = {languages.getInstance().getProperty("name2"), languages.getInstance().getProperty("adress2"), languages.getInstance().getProperty("codepost1"),languages.getInstance().getProperty("insertphone2"), languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("sex2"), languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("products_of_interest2"), languages.getInstance().getProperty("promotions1"), languages.getInstance().getProperty("numcoments2")};
+			String field = menus.menucombo(tipo,languages.getInstance().getProperty("choose_an_option"), languages.getInstance().getProperty("exercisemenu"));
+			switch (field) {
+			case "Nombre":
+			case "Name":
+			case "Nom":
+				((User) u).setnombre(Datos_user.pidenombre());
+				break;
+			case "Dirección":
+			case "Adress":
+			case "Direcció":
+				((User) u).setdireccion(Datos_user.pidedireccion());
+				break;
+			case "codigo postal":
+			case "postal code":
+			case "Códig postal":
+				((User) u).setcod_postal(Datos_user.pidecod_postal());
+				break;
+			case "Phone number":
+			case "Numero de Telefono":
+			case "Numero de Telefon":
+				((User) u).settelefono(Datos_user.pidetelefono());
+				break;
+			case "Fecha de nacimiento":
+			case "Date birthday":
+			case "Data de naixement":
+				((User) u).setfecha_nacimiento(Functions_Data_Users.pide_fecha_nacimiento());
+				break;
+			case "Sexe":
+			case "Sexo":
+			case "Sex":
+				((User) u).setsexe(Datos_user.combosexo());
+				break;
+			case "DNI":
+				((User) u).setDNI(Datos_user.pidedni());
+				break;
+			case "Producto de interes":
+			case "Product of interest":
+			case "Producte d'interes":
+				((User) u).setProductos_de_interes(Datos_user.pideProdinteres());
+				break;
+			case "Promocion":
+			case "Promotion":
+			case "Promocció":
+				((User) u).setPromociones(Datos_user.pidepromoción());
+				break;
+			case "Number of coments":
+			case "Numero de comentarios":
+			case "Numero de Comentaris":
+				((User) u).setnum_comentarios(Datos_user.pidenumcoment());
+				break;
+			}// end switch case
+		} // end casting
+		
+		
+		//Cambiem les dades del Administrador
+		if (u instanceof Admin) {
+			String[] tipo = {languages.getInstance().getProperty("name2"), languages.getInstance().getProperty("adress2"), languages.getInstance().getProperty("codepost1"),languages.getInstance().getProperty("insertphone2"), languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("sex2"), languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("date_hiri1"), languages.getInstance().getProperty("email1"), languages.getInstance().getProperty("pass2")};
+			String field = menus.menucombo(tipo, " What option do you choose ?", "Exercise Menu");
+			switch (field) {
+			case "Nombre":
+			case "Name":
+			case "Nom":
+				((Admin) u).setnombre(Datos_user.pidenombre());
+				break;
+			case "Dirección":
+			case "Adress":
+			case "Direcció":
+				((Admin) u).setdireccion(Datos_user.pidedireccion());
+				break;
+			case "codigo postal":
+			case "postal code":
+			case "Códig postal":
+				((Admin) u).setcod_postal(Datos_user.pidecod_postal());
+				break;
+			case "Phone Number":
+			case "Numero de Telefono":
+			case "Numero de Telefon":
+				((Admin) u).settelefono(Datos_user.pidetelefono());
+				break;
+			case "Fecha de nacimiento":
+			case "Date birthday":
+			case "Data de naixement":
+				((Admin) u).setfecha_nacimiento(Functions_Data_Users.cambia_fecha_nac(((Admin) u), null));
+				break;
+			case "Sexe":
+			case "Sexo":
+			case "Sex":
+				((Admin) u).setsexe(Datos_user.combosexo());
+				break;
+			case "DNI":
+				((Admin) u).setDNI(Datos_user.pidedni());
+				break;
+			case "Date of hiring":
+			case "Fecha de contratacción":
+			case "Data de Contractacció":
+				Fecha fecha_nacimiento = Functions_Data_Users.pide_fecha_contratacion(((Admin) u).getfecha_nacimiento());
+				((Admin) u).setfecha_contratacion(fecha_nacimiento);
+				break;
+			case "Email":
+			case "Correo electronico":
+			case "Correu electronic":
+				((Admin) u).setEmail(Datos_user.pideemail());
+				break;
+			case "Password":
+			case "Contraseña":
+			case "Contrasenya":
+				((Admin) u).setPasswd(Datos_user.pidepassword());
+				break;
+			}// end switch case
+		} // end casting
+		
+		//Cambiem les dades del Client
+		if (u instanceof Client) {
+			String[] tipo = {languages.getInstance().getProperty("name2"), languages.getInstance().getProperty("adress2"), languages.getInstance().getProperty("codepost1"),languages.getInstance().getProperty("insertphone2"), languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("sex2"), languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("date_regist1"), languages.getInstance().getProperty("email1"), languages.getInstance().getProperty("pass2"), languages.getInstance().getProperty("promotions1"), languages.getInstance().getProperty("numcomp1")};
+			String field = menus.menucombo(tipo, " What option do you choose ?", "Exercise Menu");
+			switch (field) {
+			case "Nombre":
+			case "Name":
+			case "Nom":
+				((Client) u).setnombre(Datos_user.pidenombre());
+				break;
+			case "Dirección":
+			case "Adress":
+			case "Direcció":
+				((Client) u).setdireccion(Datos_user.pidedireccion());
+				break;
+			case "codigo postal":
+			case "postal code":
+			case "Códig postal":
+				((Client) u).setcod_postal(Datos_user.pidecod_postal());
+				break;
+			case "Phone Number":
+			case "Numero de Telefono":
+			case "Numero de Telefon":
+				((Client) u).settelefono(Datos_user.pidetelefono());
+				break;
+			case "Fecha de nacimiento":
+			case "Date birthday":
+			case "Data de naixement":
+				((Client) u).setfecha_nacimiento(Functions_Data_Users.cambia_fecha_nac( null, ((Client) u)));
+				break;
+			case "Sexe":
+			case "Sexo":
+			case "Sex":
+				((Client) u).setsexe(Datos_user.combosexo());
+				break;
+			case "DNI":
+				((Client) u).setDNI(Datos_user.pidedni());
+				break;
+			case "Date of registration":
+			case "Fecha de alta":
+			case "Data de alta":
+				Fecha fecha_nacimiento = Functions_Data_Users.pide_fecha_alta(((Client) u).getfecha_nacimiento());
+				((Client) u).setFecha_de_alta(fecha_nacimiento);
+				break;
+			case "Email":
+			case "Correo electronico":
+			case "Correu electronic":
+				((Client) u).setEmail(Datos_user.pideemail());
+				break;
+			case "paswd":
+			case "Password":
+			case "Contraseña":
+			case "Contrasenya":
+				((Client) u).setPasswd(Datos_user.pidepassword());
+				break;
+			case "Number of purchases":
+			case "Numero de compras":
+			case "Numero de compres":
+				((Client) u).setnum_compras(Datos_user.pidenumcompres());
+				break;
+			case "Promocion":
+			case "Promotion":
+			case "Promocció":
+				((Client) u).setPromociones(Datos_user.pidepromoción());
+				break;
+			}// end switch case
+		} // end casting
+
+		return u;
+	}
+
+	public static Class_user delete_user_generic(Class_user u) {
+		u = null;
+		return u;
+	}
+	
+	
+	public static Class_user crear_users_dni(int i) {
+		Class_user u = null;
+		if (i == 0) {
+			String DNI = Datos_user.pidedni();
+			u = new User( DNI);
+		} else if (i == 1) {
+			String DNI = Datos_user.pidedni();
+			u = new Admin(DNI);
+		} else if (i == 2) {
+			String DNI = Datos_user.pidedni();
+			u = new Client( DNI);
+		}
+		return u;
+	}
+
+	
+}

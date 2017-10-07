@@ -1,0 +1,21 @@
+package Exercici_9.Modules.Users.Model.Classes.order;
+
+import java.util.Comparator;
+import Exercici_9.Modules.Users.Model.Classes.Class_user;
+
+
+public class order_by_date implements Comparator <Class_user> {
+
+	public int compare (Class_user u1, Class_user u2) {
+		int d = 0;
+		int var = u1.getfecha_nacimiento().comparaFechas(u2.getfecha_nacimiento());
+		if(var == 2)
+			d = 1;
+		else if(var == 1)
+			d = -1;
+		else if(var == 3)
+			d = 0;
+		System.out.println("The value" + var + "\n"+"The result" +d);
+		return d;
+	}
+}

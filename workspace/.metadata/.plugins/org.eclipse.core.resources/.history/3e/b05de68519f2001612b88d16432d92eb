@@ -1,0 +1,12 @@
+package Exercici_9.Modules.Users.Model.Classes;
+
+import Exercici_9.Modules.Users.Classes.Admin;
+import Exercici_9.Modules.Users.Classes.Client;
+import Exercici_9.Modules.Users.Classes.User;
+import java.util.ArrayList;
+
+public class Singleton {
+	public static ArrayList <Admin> useradmin;
+	public static ArrayList <Client> userclient;
+	public static ArrayList <User> userregister;
+}

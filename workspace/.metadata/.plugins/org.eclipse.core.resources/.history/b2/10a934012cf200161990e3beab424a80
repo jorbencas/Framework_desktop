@@ -1,0 +1,524 @@
+package Exercici_9.Modules.Users.Model.BLL.BLL_dummies;
+
+import javax.swing.JOptionPane;
+import Exercici_9.Menu;
+import Exercici_9.Classes.Fecha;
+import Exercici_9.Classes.Setting;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Utils.menus;
+
+public class functions_dummies {
+
+	public static Class_user crear_users_generic(int i) {
+		Class_user u = null;
+		if (i == 0) {
+			String nombre = "Maria";
+			String direccion = "Plaza_España_n3";
+			int cod_postal = 49853;
+			String telefono = "+34654852753";
+			Fecha fecha_nacimiento = dates("30/01/1990");
+			char sexe = changegenered(null, languages.getInstance().getProperty("sex2"), nombre);
+			String DNI = "47859145D";
+			String Productos_de_interes = languages.getInstance().getProperty("promotion1");
+			String Promociones = languages.getInstance().getProperty("promotion");
+			int num_comentarios = 58;
+			u = new User(nombre, direccion, cod_postal, telefono, fecha_nacimiento, sexe, DNI, Productos_de_interes,Promociones, num_comentarios);
+			JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("u1"), languages.getInstance().getProperty("cong"),JOptionPane.INFORMATION_MESSAGE);
+
+		} else if (i == 1) {
+
+			String nombre = "Ana";
+			String direccion = "generalitat_valenciana_n6";
+			int cod_postal = 46870;
+			String telefono = "+34425638540";
+			Fecha fecha_nacimiento = dates("30/01/1990");
+			Fecha fecha_contratacion = dates("30/01/1990");
+			char sexe = changegenered(null, languages.getInstance().getProperty("sex2"), nombre);
+			String DNI = "41965247E";
+			String email = "anagomezruic@gmail.com";
+			String passwd = "Trestristes3+";
+			u = new Admin(nombre, direccion, cod_postal, telefono, fecha_nacimiento, DNI, fecha_contratacion, sexe, email, passwd);
+			JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("u2"), languages.getInstance().getProperty("cong"),JOptionPane.INFORMATION_MESSAGE);
+
+		} else if (i == 2) {
+			String nombre = "Paco";
+			String direccion = "carrer_flanes_n5";
+			int cod_postal = 47452;
+			String telefono = "+34655874103";
+			Fecha fecha_nacimiento = dates("01/01/1970");
+			Fecha fecha_de_alta = dates("12/05/1990");
+			char sexe = changegenered(null, languages.getInstance().getProperty("sex2"), nombre);
+			String DNI = "43895420N";
+			String email = "paquito12@gmail.com";
+			String passwd = "Paquitostres3+";
+			String Promociones = languages.getInstance().getProperty("promotion2");
+			int num_compras = 258;
+			u = new Client(nombre, direccion, cod_postal, telefono, fecha_nacimiento, sexe, email, passwd, DNI,fecha_de_alta, Promociones, num_compras);
+			JOptionPane.showMessageDialog(null, languages.getInstance().getProperty("u3"), languages.getInstance().getProperty("cong"),JOptionPane.INFORMATION_MESSAGE);
+
+		}
+		return u;
+	}
+
+	public static String read_users_generic(Class_user u) {
+		String cad = "";
+		if (u instanceof Client) {
+			cad = ((Client) u).to_String();
+		}
+		if (u instanceof Admin) {
+			cad = ((Admin) u).to_String();
+		}
+		if (u instanceof User) {
+			cad = ((User) u).to_String();
+		}
+		return cad;
+	}
+
+	public static Class_user update_users_generic(Class_user u) {
+		// Cambiem les dades del Normal
+		if (u instanceof User) {
+			String[] tipo = { languages.getInstance().getProperty("name2"), languages.getInstance().getProperty("adress2"),	languages.getInstance().getProperty("codepost1"), languages.getInstance().getProperty("insertphone2"),languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("sex2"),languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("products_of_interest2"),languages.getInstance().getProperty("promotions1"), languages.getInstance().getProperty("numcoments2") };
+			String field = menus.menucombo(tipo, languages.getInstance().getProperty("choose_an_option"),languages.getInstance().getProperty("exercisemenu"));
+			switch (field) {
+			case "Nombre":
+			case "Name":
+			case "Nom":
+				((User) u).setnombre(changename(u, languages.getInstance().getProperty("sex2")));
+				break;
+			case "Dirección":
+			case "Adress":
+			case "Direcció":
+				((User) u).setdireccion("carrer_colau_n8");
+				break;
+			case "codigo postal":
+			case "postal code":
+			case "Códig postal":
+				((User) u).setcod_postal(46870);
+				break;
+			case "Phone number":
+			case "Numero de Telefono":
+			case "Numero de Telefon":
+				((User) u).settelefono("+34685741965");
+				break;
+			case "Fecha de nacimiento":
+			case "Date birthday":
+			case "Data de naixement":
+				((User) u).setfecha_nacimiento(dates("01/01/1990"));
+				break;
+			case "Sexe":
+			case "Sexo":
+			case "Sex":
+				((User) u).setsexe(changegenered(u, languages.getInstance().getProperty("sex2"), ""));
+				break;
+			case "DNI":
+				((User) u).setDNI("49638578R");
+				break;
+			case "Producto de interes":
+			case "Product of interest":
+			case "Producte d'interes":
+				((User) u).setProductos_de_interes(languages.getInstance().getProperty("product1"));
+				break;
+			case "Promocion":
+			case "Promotion":
+			case "Promocció":
+				((User) u).setPromociones(languages.getInstance().getProperty("product"));
+				break;
+			case "Number of coments":
+			case "Numero de comentarios":
+			case "Numero de Comentaris":
+				((User) u).setnum_comentarios(25);
+				break;
+			}// end switch case
+		} // end casting
+
+		// Cambiem les dades del Administrador
+		if (u instanceof Admin) {
+			String[] tipo = { languages.getInstance().getProperty("name2"), languages.getInstance().getProperty("adress2"),	languages.getInstance().getProperty("codepost1"), languages.getInstance().getProperty("insertphone2"),languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("sex2"),	languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("date_hiri1"), languages.getInstance().getProperty("email1"),languages.getInstance().getProperty("pass2") };
+			String field = menus.menucombo(tipo, languages.getInstance().getProperty("choose_an_option"),languages.getInstance().getProperty("exercisemenu"));
+			switch (field) {
+			case "Nombre":
+			case "Name":
+			case "Nom":
+				((Admin) u).setnombre(changename(u, languages.getInstance().getProperty("sex2")));
+				break;
+			case "Dirección":
+			case "Adress":
+			case "Direcció":
+				((Admin) u).setdireccion("carrer_corronel_n7");
+				break;
+			case "Codigo postal":
+			case "Postal code":
+			case "Códig postal":
+				((Admin) u).setcod_postal(49852);
+				break;
+			case "Phone Number":
+			case "Numero de Telefono":
+			case "Numero de Telefon":
+				((Admin) u).settelefono("+34692857413");
+				break;
+			case "Fecha de nacimiento":
+			case "Date birthday":
+			case "Data de naixement":
+				((Admin) u).setfecha_nacimiento(dates("11/09/1965"));
+				break;
+			case "Sexe":
+			case "Sexo":
+			case "Sex":
+				((Admin) u).setsexe(changegenered(u, languages.getInstance().getProperty("sex2"), ""));
+				break;
+			case "DNI":
+				((Admin) u).setDNI("48749632M");
+				break;
+			case "Date of hiring":
+			case "Fecha de contratacción":
+			case "Data de Contractacció":
+				((Admin) u).setfecha_contratacion(dates("21/04/1989"));
+				break;
+			case "Email":
+			case "Correo electronico":
+			case "Correu electronic":
+				((Admin) u).setEmail("josegomez@gmail.com");
+				break;
+			case "Password":
+			case "Contraseña":
+			case "Contrasenya":
+				((Admin) u).setPasswd("Lospaitos12+");
+				break;
+			}// end switch case
+		} // end casting
+
+		// Cambiem les dades del Client
+		if (u instanceof Client) {
+			String[] tipo = { languages.getInstance().getProperty("name2"), languages.getInstance().getProperty("adress2"),languages.getInstance().getProperty("codepost1"), languages.getInstance().getProperty("insertphone2"),languages.getInstance().getProperty("date_birthday2"), languages.getInstance().getProperty("sex2"),languages.getInstance().getProperty("dni"), languages.getInstance().getProperty("date_regist1"),languages.getInstance().getProperty("email1"), languages.getInstance().getProperty("pass2"),languages.getInstance().getProperty("promotions1"), languages.getInstance().getProperty("numcomp1") };
+			String field = menus.menucombo(tipo, languages.getInstance().getProperty("choose_an_option"),languages.getInstance().getProperty("exercisemenu"));
+			switch (field) {
+			case "Nombre":
+			case "Name":
+			case "Nom":
+				((Client) u).setnombre(changename(u, languages.getInstance().getProperty("sex2")));
+				break;
+			case "Dirección":
+			case "Adress":
+			case "Direcció":
+				((Client) u).setdireccion("avinjuda_almaig_n12");
+				break;
+			case "codigo postal":
+			case "postal code":
+			case "Códig postal":
+				((Client) u).setcod_postal(47859);
+				break;
+			case "Phone Number":
+			case "Numero de Telefono":
+			case "Numero de Telefon":
+				((Client) u).settelefono("+34698521743");
+				break;
+			case "Fecha de nacimiento":
+			case "Date birthday":
+			case "Data de naixement":
+				((Client) u).setfecha_nacimiento(dates("01/02/1972"));
+				break;
+			case "Sexe":
+			case "Sexo":
+			case "Sex":
+				((Client) u).setsexe(changegenered(u, languages.getInstance().getProperty("sex2"), ""));
+				break;
+			case "DNI":
+				((Client) u).setDNI("40596384G");
+				break;
+			case "Date of registration":
+			case "Fecha de alta":
+			case "Data de alta":
+				((Client) u).setFecha_de_alta(dates("01/02/1999"));
+				break;
+			case "Email":
+			case "Correo electronico":
+			case "Correu electronic":
+				((Client) u).setEmail("joselitolopez@gmail.com");
+				break;
+			case "Password":
+			case "Contraseña":
+			case "Contrasenya":
+				((Client) u).setPasswd("Palamitas12?");
+				break;
+			case "Number of purchases":
+			case "Numero de compras":
+			case "Numero de compres":
+				((Client) u).setnum_compras(24);
+				break;
+			case "Promocion":
+			case "Promotion":
+			case "Promocció":
+				((Client) u).setPromociones(languages.getInstance().getProperty("key"));
+				break;
+			}// end switch case
+		} // end casting
+
+		return u;
+	}
+
+	public static Class_user delete_user_generic(Class_user u) {
+		u = null;
+		return u;
+	}
+	
+	public static Class_user crear_users_dummis_dni(int i) {
+		Class_user u = null;
+		if (i == 0) {
+			String DNI = "47859145D";
+			u = new User( DNI);
+		} else if (i == 1) {
+			String DNI = "41965247E";
+			u = new Admin(DNI);
+		} else if (i == 2) {
+			String DNI = "43895420N";
+			u = new Client(DNI);
+		}
+		return u;
+	}
+	
+	public static Fecha dates (String date){
+		//la tasca de aquesta funcio, es la de modificar, cambiar i asignar un format a la variable dates, la cual passem per ha crear el objecte
+		//de tal forma, q amb aquesta funccio, cualsevol format q el usuari elegisca, es tranforma, en / es crea el objecte, i despres es torna ha trasformar, per ha imprimirlo com el usuari vol.
+		Fecha dates = null;
+		switch (Setting.getInstance().getDate_config()) {
+		case "DD/MM/YYYY":
+			 Setting.getInstance().setDate_config("DD/MM/YYYY");
+			 dates = new Fecha(date);
+			break;
+		case "DD-MM-YYYY":
+			Setting.getInstance().setDate_config("DD/MM/YYYY");
+			dates = new Fecha(date);
+			Setting.getInstance().setDate_config("DD-MM-YYYY");
+			break;
+		case "YYYY/MM/DD":
+			Setting.getInstance().setDate_config("DD/MM/YYYY");
+			dates = new Fecha(date);
+			Setting.getInstance().setDate_config("YYYY/MM/DD");
+			break;
+		case "YYYY-MM-DD":
+			Setting.getInstance().setDate_config("DD/MM/YYYY");
+			 dates = new Fecha(date);
+			Setting.getInstance().setDate_config("YYYY-MM-DD");
+			break;
+		}
+		return dates;
+	}
+
+	public static char changegenered(Class_user u, String sex, String nombre) {
+		// Aquesta funcio el que fa es actualitzar el sexe, en funcio del nom
+		// del usuari i adapta el genere, al nom del usuari, naturalment en
+		// diferents idiomes
+		char sexlang = 0;
+		// If utilizat per al create
+		if (u == null) {
+			if (nombre.equals("Paco")) {
+				if (sex.equals("Sex")) {
+					sexlang = 'M';
+				} else if (sex.equals("Sexo")) {
+					sexlang = 'H';
+				} else if (sex.equals("Sexe")) {
+					sexlang = 'H';
+				}
+			} else if ((nombre.equals("Maria")) || (nombre.equals("Ana"))) {
+				// si el nom que sha introduit, es igual a Mria o ha Ana,
+				// el que fa es assignarlos el genere femeni, en els diferents
+				// idiomes de l'aplicacció
+				if (sex.equals("Sex")) {
+					sexlang = 'W';
+				} else if (sex.equals("Sexo")) {
+					sexlang = 'm';
+				} else if (sex.equals("Sexe")) {
+					sexlang = 'D';
+				}
+			}
+		} else {
+			// else utilitzat per al update
+			String name = u.getnombre();// declaracio de variable nom (Se que
+										// aquesta, no es la forma correcta de
+										// estructurar els programes,
+										// pero si la inicialitze d'alt, el
+										// primer if, hen diu un error "dead
+										// code")
+			// control de errors, per si el usuari, cambia el sexe,
+			// i que el nom del usuari es cambie automaticament
+			if ((name.equals("Maria")) || (name.equals("Ana")) || (name.equals("Paco"))) {
+				switch (name) {
+				case "Ana":
+					name = "Ferran";
+					((Admin) u).setnombre(name);
+					break;
+				case "Paco":
+					name = "Patricia";
+					((Client) u).setnombre(name);
+					break;
+				case "Maria":
+					name = "Jorge";
+					((User) u).setnombre(name);
+					break;
+				}
+			}
+			// els seguents if son per a gestionar els updates, i que es cambie
+			// el genere del usuari, depenent del seu nom
+			if ((name.equals("Ferran")) || (name.equals("Jorge"))) {
+				if (sex.equals("Sex")) {
+					sexlang = 'M';
+				} else if (sex.equals("Sexo")) {
+					sexlang = 'H';
+				} else if (sex.equals("Sexe")) {
+					sexlang = 'H';
+				}
+			} else if (name.equals("Patricia")) {
+				if (sex.equals("Sex")) {
+					sexlang = 'W';
+				} else if (sex.equals("Sexo")) {
+					sexlang = 'm';
+				} else if (sex.equals("Sexe")) {
+					sexlang = 'D';
+				}
+			}
+		}
+		System.out.println(sexlang);
+
+		return sexlang;
+	}
+
+	public static String changename(Class_user u, String sex) {
+		//la intenccio de esta funció, es cambiar el genere, del create y el update, depenent del nom que el usuari pose.
+		String name = u.getnombre();
+		char  sexlang = u.getsexe();
+		if ((name.equals("Maria")) || (name.equals("Ana")) || (name.equals("Paco"))) {
+			switch (name) {
+			case "Ana":
+				name = "Ferran";
+				((Admin) u).setnombre(name);
+				
+				break;
+			case "Paco":
+				name = "Patricia";
+				((Client) u).setnombre(name);
+				
+				break;
+			case "Maria":
+				name = "Jorge";
+				((User) u).setnombre(name);
+				
+				break;
+			}
+		}
+		
+		if ((name.equals("Ferran")) || (name.equals("Jorge"))) {
+			if (sex.equals("Sex")) {
+				sexlang = 'M';
+				u.setsexe(sexlang);
+			} else if (sex.equals("Sexo")) {
+				sexlang = 'H';
+				u.setsexe(sexlang);
+			} else if (sex.equals("Sexe")) {
+				sexlang = 'H';
+				u.setsexe(sexlang);
+			}
+		} else if (name.equals("Patricia")) {
+			if (sex.equals("Sex")) {
+				sexlang = 'W';
+				u.setsexe(sexlang);
+			} else if (sex.equals("Sexo")) {
+				sexlang = 'm';
+				u.setsexe(sexlang);
+			} else if (sex.equals("Sexe")) {
+				sexlang = 'D';
+				u.setsexe(sexlang);
+			}
+		}
+		
+		return name;
+	}
+	
+	
+//funccions recalculades
+
+	public static char langsex(char sex) {
+		// Esta función, lo que fa es recalcular y mostrar el valor del genere,
+		// depènent del idioma en que s'ejecute l'aplicacció
+		String lang = Setting.getInstance().getLanguage();
+		if ((sex == 'M')  || (sex == 'H')) {
+			if (lang.equals("Spanish")) {
+				sex = 'H';
+			} else if (lang.equals("Valencian")) {
+				sex = 'H';
+			} else if (lang.equals("English")) {
+				sex = 'M';
+			}
+		} else if ((sex == 'D') || (sex == 'M') || (sex == 'W')) {
+			if (lang.equals("Spanish")) {
+				sex = 'm';
+			} else if (lang.equals("Valencian")) {
+				sex = 'D';
+			} else if (lang.equals("English")) {
+				sex = 'W';
+			}
+			//aquesta funció, esta aplicanse a la classe mare "Class_user", al metode getsexe.
+		}
+		return sex;
+	}
+
+	public static String dummies_attribute(String propeti) {
+		// la funcionalitat de aquesta funcio, es la de cambiar de idioma tots
+		// els atributs
+		// dels dummies si es cambia el idioma de l'aplicacció i imprimirlos
+		String lang =Setting.getInstance().getLanguage();
+
+		if (lang.equals("Spanish") || lang.equals("Valencian") || lang.equals("English")) {
+			if ((propeti.equals("Keybords wireless")) || (propeti.equals("Teclados Inalambricos"))|| (propeti.equals("Teclats Inalambrics"))) {
+				if (lang.equals("Spanish")) {
+					propeti = "Teclados Inalambricos";
+				} else if (lang.equals("Valencian")) {
+					propeti = "Teclats Inalambrics";
+				} else if (lang.equals("English")) {
+					propeti = "Keybords wireless";
+				}
+			} else if ((propeti.equals("mouse pad")) || (propeti.equals("Alfombrilla para ratón"))|| (propeti.equals("Alfombreta per al ratoli"))) {
+				if (lang.equals("Spanish")) {
+					propeti = "Alfombrilla para ratón";
+				} else if (lang.equals("Valencian")) {
+					propeti = "Alfombreta per al ratoli";
+				} else if (lang.equals("English")) {
+					propeti = "mouse pad";
+				}
+			} else if ((propeti.equals("Televisions")) || (propeti.equals("Televisores"))|| (propeti.equals("Televisors"))) {
+				if (lang.equals("Spanish")) {
+					propeti = "Televisores";
+				} else if (lang.equals("Valencian")) {
+					propeti = "Televisors";
+				} else if (lang.equals("English")) {
+					propeti = "Televisions";
+				}
+			} else if ((propeti.equals("Mobile phones")) || (propeti.equals("Mobiles")) || (propeti.equals("Movils"))) {
+				if (lang.equals("Spanish")) {
+					propeti = "Mobiles";
+				} else if (lang.equals("Valencian")) {
+					propeti = "Movils";
+				} else if (lang.equals("English")) {
+					propeti = "Mobile phones";
+				}
+			} else if ((propeti.equals("Card's SD")) || (propeti.equals("Tarjetas SD"))|| (propeti.equals("Tajetes SD"))) {
+				if (lang.equals("Spanish")) {
+					propeti = "Tarjetas SD";
+				} else if (lang.equals("Valencian")) {
+					propeti = "Tajetes SD";
+				} else if (lang.equals("English")) {
+					propeti = "Card's SD";
+				}
+			} else if ((propeti.equals("Printer")) || (propeti.equals("Impresora")) || (propeti.equals("Impressora"))) {
+				if (lang.equals("Spanish")) {
+					propeti = "Impresora";
+				} else if (lang.equals("Valencian")) {
+					propeti = "Impressora";
+				} else if (lang.equals("English")) {
+					propeti = "Printer";
+				}
+			}
+			//aquesta funció, esta aplicanse a les classe, que tent aquestos atributs, User y Client.
+		}
+		return propeti;
+	}
+}

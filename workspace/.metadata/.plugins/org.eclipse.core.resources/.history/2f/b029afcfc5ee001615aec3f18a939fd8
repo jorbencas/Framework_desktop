@@ -1,0 +1,94 @@
+package Exercici_9.Modules.Users.Utils.CRUD;
+
+import Exercici_9.Modules.Users.Classes.Admin;
+import Exercici_9.Modules.Users.Classes.Client;
+import Exercici_9.Modules.Users.Classes.Singleton;
+import Exercici_9.Modules.Users.Classes.User;
+import Exercici_9.Utils.menus;
+
+public class functions_find {
+
+	public static int find_admin(Admin admin) { 
+		for (int i = 0; i<=(Singleton.useradmin.size()-1); i++){
+			if((Singleton.useradmin.get(i)).equals(admin) )
+				return i;
+		}
+		return -1;
+	}
+	
+	public static int find_client(Client client) { 
+		for (int i = 0; i<=(Singleton.userclient.size()-1); i++){
+			if((Singleton.userclient.get(i)).equals(client) )
+				return i;
+		}
+		return -1;
+	}
+	
+	public static int find_user(User user) { 
+		for (int i = 0; i<=(Singleton.userregister.size()-1); i++){
+			if((Singleton.userregister.get(i)).equals(user) )
+				return i;
+		}
+		return -1;
+	}
+	
+	public static String[] generate_vector_admin () {
+		Admin a1 = null;
+		String s = "";
+		int arraylist =Singleton.useradmin.size();
+		String [] user = new String[arraylist];
+		for (int i = 0; i<arraylist; i++) {
+			a1 = (Admin) Singleton.useradmin.get(i);
+			s=a1.getDNI()+"-----"+a1.getnombre();
+			user[i] = s;
+		}
+		
+		return user;
+	}
+	
+	public static Admin IDadmin () {
+		Admin a1 = null;
+		String ID = "";
+		String [] admin = generate_vector_admin ();
+		String search = menus.menucombo(admin,"asktitle", "select_user");
+		if (search != ""){
+			for (int i = 0; i<9; i++) {
+				ID += search.charAt(i);
+			}
+			a1 = new Admin (ID);
+		}
+		return a1;		
+	}
+	
+	public static Admin IDadmin () {
+		Admin a1 = null;
+		String ID = "";
+		String [] admin = generate_vector_admin ();
+		String search = menus.menucombo(admin,"asktitle", "select_user");
+		if (search != ""){
+			for (int i = 0; i<9; i++) {
+				ID += search.charAt(i);
+			}
+			a1 = new Admin (ID);
+		}
+		return a1;		
+	}
+	
+	public static User IDuser () {
+		User u1 = null;
+		String ID = "";
+		String [] User = generate_vector_admin ();
+		String search = menus.menucombo(User,"asktitle", "select_user");
+		if (search != ""){
+			for (int i = 0; i<9; i++) {
+				ID += search.charAt(i);
+			}
+			u1 = new User (ID);
+		}
+		return u1;		
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,216 @@
+package Exercici_9.Modules.Users.Model.Utils;
+
+import javax.swing.JOptionPane;
+import Exercici_9.Utils.validate;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Utils.functions;
+import Exercici_9.Utils.menus;
+
+public class Datos_user {
+	public static String pidenombre() {
+		boolean resultado = false;
+		String nombre = "";
+		
+		do {
+			nombre = functions.v_String(languages.getInstance().getProperty("name"),languages.getInstance().getProperty("name2"));
+			resultado = validate.v_nombre(nombre);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("error2"), "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return nombre;
+	}
+
+	public static String pidedireccion() {
+		boolean resultado = false;
+		String direccion = "";
+		
+		do {
+			direccion = functions.v_String(languages.getInstance().getProperty("adress") + "\n" +languages.getInstance().getProperty("example") + "Carre_Colau_n8",languages.getInstance().getProperty("adress2"));
+			resultado = validate.v_direccion(direccion);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("erroradrec"),  "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return direccion;
+	}
+
+	public static String pidetelefono() {
+		boolean resultado = false;
+		String telefono = "";
+		
+		do {
+			telefono = functions.v_String(languages.getInstance().getProperty("insertphone") + "\n" +languages.getInstance().getProperty("example") + "+34425638540",languages.getInstance().getProperty("insertphone2"));
+			resultado = validate.v_telefono(telefono);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errornum"),  "Error",JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return telefono;
+	}
+
+	public static String pidedni() {
+		boolean resultado = false;
+		String dni = "";
+		//
+		do {
+			dni = functions.v_String(languages.getInstance().getProperty("typedni") + "\n" +languages.getInstance().getProperty("example") + "41965247E",languages.getInstance().getProperty("dni"));
+			resultado = validate.v_dni(dni);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errordni"), "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return dni;
+	}
+
+	public static char combosexo() {
+		char s = 0;
+		String[] tipo = {languages.getInstance().getProperty("Hombre"),languages.getInstance().getProperty("Mujer") };
+		String field = menus.menucombo(tipo,languages.getInstance().getProperty("genered"),languages.getInstance().getProperty("genered1"));
+			if (field.equals("Hombre")){
+				s = 'H';
+			}else if( field.equals("Home")){
+				s = 'H';
+			}else if(field.equals("Men")){
+				s = 'M';
+			}
+			
+			if (field.equals("Mujer")){
+				s = 'm';
+			}else if (field.equals("Dona")){
+				s = 'D';
+			}else if (field.equals("Women")){
+				s = 'W';
+			}
+					
+		System.out.println(s);
+		return s;
+	}
+
+	public static String pideemail() {
+		boolean resultado = false;
+		String email = "";
+		
+		do {
+			email = functions.v_String(languages.getInstance().getProperty("email") + "\n" +languages.getInstance().getProperty("example") + "jorbencas.23@gmail.com",languages.getInstance().getProperty("email1"));
+			resultado = validate.v_email(email);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errormail"),  "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return email;
+	}
+
+	public static int pidecod_postal() {
+		boolean resultado = false;
+		String codigo_postal = "";
+		int codigo_postal1 = 0;
+		
+		do {
+			codigo_postal = functions.v_String(languages.getInstance().getProperty("codepost"),languages.getInstance().getProperty("codepost1"));
+			resultado = validate.v_c_p(codigo_postal);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errorcodpost"), "Error",JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		codigo_postal1 = Integer.parseInt(codigo_postal);
+		return codigo_postal1;
+	}
+
+	public static String pideProdinteres() {
+		boolean resultado = false;
+		String Promociones = "";
+		
+		do {
+			Promociones = functions.v_String(languages.getInstance().getProperty("products_of_interest"),languages.getInstance().getProperty("products_of_interest2"));
+			resultado = validate.v_nombre(Promociones);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errorprodinter"), "Error",JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return Promociones;
+	}
+
+	public static String pidepassword() {
+		boolean resultado = false;
+		String password = "";
+		
+		do {
+			password = functions.v_String(languages.getInstance().getProperty("pass") + "\n" +languages.getInstance().getProperty("example") + "Dessarollament1+",languages.getInstance().getProperty("pass2"));
+			resultado = validate.v_password(password);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errorpass"),  "Error",JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return password;
+	}
+
+	public static int pidenumcoment() {
+		boolean resultado = false;
+		String salari = "";
+		int salari1 = 0;
+		
+		do {
+			salari = functions.v_String(languages.getInstance().getProperty("numcoments"),languages.getInstance().getProperty("numcoments2"));
+			resultado = validate.v_puntos(salari);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errornumcoments"), "Error",JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		salari1 = Integer.parseInt(salari);
+		return salari1;
+	}
+
+	public static String pidepromoción() {
+		boolean resultado = false;
+		String password = "";
+		
+		do {
+			password = functions.v_String(languages.getInstance().getProperty("promotions"),languages.getInstance().getProperty("promotions1"));
+			resultado = validate.v_nombre(password);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("erropromotion"),  "Error",JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		return password;
+	}
+
+	public static int pidenumcompres() {
+		boolean resultado = false;
+		String puntos = "";
+		int puntos1 = 0;
+		
+		do {
+			puntos = functions.v_String(languages.getInstance().getProperty("numcomp"),languages.getInstance().getProperty("numcomp1") );
+			resultado = validate.v_puntos(puntos);
+			if (resultado == false) {
+				JOptionPane.showMessageDialog(null,languages.getInstance().getProperty("errorpoint"), "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				resultado = true;
+			}
+		} while (resultado == false);
+		puntos1 = Integer.parseInt(puntos);
+		return puntos1;
+	}
+
+}

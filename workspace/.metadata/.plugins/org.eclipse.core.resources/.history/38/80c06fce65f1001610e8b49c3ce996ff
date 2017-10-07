@@ -1,0 +1,156 @@
+package Exercici_9.Utils;
+
+import Exercici_9.Classes.Setting;
+import Exercici_9.Classes.Lenguage.languages;
+import Exercici_9.Utils.file_setting.s_json;
+
+public class functions_conf {
+
+
+	public static void language () {
+		String[] tipo6 = { languages.getInstance().getProperty("valenciano"),languages.getInstance().getProperty("spanish"), languages.getInstance().getProperty("english") };
+		String Idioma = "";
+		Idioma = menus.menucombo(tipo6, languages.getInstance().getProperty("choose_an_option"),languages.getInstance().getProperty("lang"));
+		System.out.println(Idioma);
+		switch (Idioma) {
+		case "Valencian":
+		case "Valenciano":
+		case "Valencia":
+			Setting.getInstance().setLanguage("Valencian");
+			break;
+		case "Spanish":
+		case "Español":
+		case "Espanyol":
+			Setting.getInstance().setLanguage("Spanish");
+			break;
+		case "Angles":
+		case "Ingles":
+		case "English":
+			Setting.getInstance().setLanguage("English");
+			break;
+		}
+	}
+	
+	public static void date () {
+		String menu = "";
+		String[] tipo3 = { "DD/MM/YYYY", "DD-MM-YYYY", "YYYY/MM/DD", "YYYY-MM-DD" };
+		menu = menus.menucombo(tipo3, languages.getInstance().getProperty("change_data"),languages.getInstance().getProperty("date"));
+		switch (menu) {
+		case "DD/MM/YYYY":
+			Setting.getInstance().setDate_config("DD/MM/YYYY");
+			break;
+		case "DD-MM-YYYY":
+			Setting.getInstance().setDate_config("DD-MM-YYYY");
+			break;
+		case "YYYY/MM/DD":
+			Setting.getInstance().setDate_config("YYYY/MM/DD");
+			;
+			break;
+		case "YYYY-MM-DD":
+			Setting.getInstance().setDate_config("YYYY-MM-DD");
+			break;
+		}
+	}
+	
+	public static void currency () {
+		String menu = "";
+		String[] tipo4 = { "€ Euros", "$ Dolars", "£ Libras" };
+		menu = menus.menucombo(tipo4, languages.getInstance().getProperty("currency2"),languages.getInstance().getProperty("currency"));
+		switch (menu) {
+		case "€ Euros":
+			Setting.getInstance().setCurrency_config('€');
+			break;
+		case "$ Dolars":
+			Setting.getInstance().setCurrency_config('$');
+			break;
+		case "£ Libras":
+			Setting.getInstance().setCurrency_config('£');
+			break;
+		}
+	}
+	
+	public static void decimal () {
+		String menu = "";
+		String [] tipo5 = {languages.getInstance().getProperty("1decimal"), languages.getInstance().getProperty("2decimal"),languages.getInstance().getProperty("3decimal")};
+		menu = menus.menucombo(tipo5, languages.getInstance().getProperty("mdeci"), languages.getInstance().getProperty("decimals"));
+		switch (menu) {
+			case "1 Decimal":
+				Setting.getInstance().setDecimals_config(1);
+				break;
+			case "2 Decimales":
+			case "2 Decimals":
+				Setting.getInstance().setDecimals_config(2);
+				break;
+			case "3 Decimales":
+			case "3 Decimals":
+				Setting.getInstance().setDecimals_config(3);
+				break;
+		}
+	}
+	public static void file () {
+		String menu = "";
+		String [] tipo7 = {"json","txt","xml"};
+		menu = menus.menucombo(tipo7, languages.getInstance().getProperty("mdeci"), languages.getInstance().getProperty("decimals"));
+		switch (menu) {
+			case "json":
+				Setting.getInstance().setFile("json");
+				break;
+			case "txt":
+				Setting.getInstance().setFile("txt");
+				break;
+			case "xml":
+				Setting.getInstance().setFile("xml");
+				break;
+		}
+	}
+	
+	public static void dummies(){
+		String menu = "";
+		boolean dummies = false;
+		String[] tipo9 = { languages.getInstance().getProperty("Act"), languages.getInstance().getProperty("Desact") };
+		menu = menus.menucombo(tipo9, languages.getInstance().getProperty("dummies"), "Dummies");
+		switch (menu) {
+		case "Activate":
+		case "Activar":
+		case "Activat":
+			Setting.getInstance().setdummies(dummies = true);
+			break;
+		case "Desactivate":
+		case "Desactivar":
+		case "Desactivat":
+			Setting.getInstance().setdummies(dummies = false);
+			break;
+		}
+	}
+	
+	public static void theme () {
+		String [] options = { "METAL", "GTK", "MOTIF" };
+		String menu = "";
+		menu = menus.menucombo(options, languages.getInstance().getProperty("themetitle"), languages.getInstance().getProperty("asktitle") );
+		switch (menu){
+			case "METAL":// Metal - Predeterminado JAVA
+				Setting.getInstance().setTheme("METAL");
+				break;
+	
+			case "GTK":// GTK
+				Setting.getInstance().setTheme("GTK");
+				break;
+	
+			case "MOTIF":// Motif
+				Setting.getInstance().setTheme("MOTIF");
+				break;
+		}
+	}
+	
+	public static void defautlSettings (){
+		Setting conf =  new Setting();
+		conf.getInstance().setCurrency_config(conf.getCurrency_config());
+		conf.getInstance().setDate_config(conf.getDate_config());
+		conf.getInstance().setDecimals_config(conf.getDecimals_config());
+		conf.getInstance().setdummies(conf.getdummies());
+		conf.getInstance().setFile(conf.getFile());
+		conf.getInstance().setLanguage(conf.getLanguage()); 
+		conf.getInstance().setTheme(conf.getTheme());
+		conf.getInstance().setFile(conf.getFile());
+	}
+}
